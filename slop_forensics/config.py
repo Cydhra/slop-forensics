@@ -41,7 +41,7 @@ MIN_OUTPUT_LENGTH = 500 # Minimum character length for generated output
 
 # Concurrency & Saving
 MAX_WORKERS = 10 # Adjust based on API rate limits and system resources
-SAVE_EVERY_N = 20
+SAVE_EVERY_N = 10
 API_RETRIES = 5
 API_TIMEOUT = 180 # seconds
 TARGET_RECORDS_PER_MODEL = 1000 # Target number of records to generate per model
