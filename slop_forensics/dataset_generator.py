@@ -178,7 +178,7 @@ def _call_api(prompt_details: dict, model_name: str) -> Optional[Dict]:
                 logger.warning(f"Could not parse error response body: {e.response.text}")
 
             if status_code == 429: # Rate limit
-                wait_time = 15 * attempt
+                wait_time = 60 * attempt
                 logger.warning(f"Rate limit likely hit. Waiting {wait_time}s before retry.")
                 time.sleep(wait_time)
             elif status_code >= 500: # Server error
