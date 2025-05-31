@@ -26,8 +26,9 @@ COMBINED_METRICS_FILE = os.path.join(RESULTS_DIR, "slop_profile_results.json") #
 # --- Dataset Generation ---
 # Hugging Face Datasets for prompts
 DATASET_SOURCES = {
-    "Nitral-AI": "Nitral-AI/Reddit-SFW-Writing_Prompts_ShareGPT",
+    # "Nitral-AI": "Nitral-AI/Reddit-SFW-Writing_Prompts_ShareGPT",
     #"llm-aes": "llm-aes/writing-prompts"
+    "json": "../data/scp_prompts.json"
 }
 
 

@@ -1,17 +1,16 @@
+import json
+import logging
 import os
 import requests
-import json
-import time
-import logging
 import threading
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datasets import load_dataset
+from tqdm import tqdm  # Use standard tqdm here
 from typing import List, Dict, Set, Tuple, Optional
 
-from datasets import load_dataset
-from tqdm import tqdm # Use standard tqdm here
-
 from . import config
-from .utils import save_jsonl_file, sanitize_filename, load_jsonl_file
+from .utils import sanitize_filename, load_jsonl_file
 
 logger = logging.getLogger(__name__)
 
@@ -43,8 +42,11 @@ def load_and_prepare_prompts(output_filename: str) -> Tuple[List[Dict], Set[Tupl
     for source_name, dataset_id in config.DATASET_SOURCES.items():
         logger.info(f"Loading dataset: {dataset_id} (Source: {source_name})")
         try:
-            # Load non-streaming first for easier length check and iteration
-            ds = load_dataset(dataset_id, split='train', streaming=False)
+            # Load non-streaming first for easier length check and iteration, except for json datasets
+            if source_name == "json":
+                ds = load_dataset('json', data_files=dataset_id, split='train', streaming=False)
+            else:
+                ds = load_dataset(dataset_id, split='train', streaming=False)
             dataset_len = len(ds) # Get length if possible
             total_loaded += dataset_len
             logger.info(f"Loaded {dataset_len} rows from {source_name}.")
@@ -73,6 +75,9 @@ def load_and_prepare_prompts(output_filename: str) -> Tuple[List[Dict], Set[Tupl
                                  logger.warning(f"Could not parse 'conversations' string in {source_name} row {i}.")
 
                     elif source_name == "llm-aes":
+                        prompt_text = row.get('prompt')
+                    elif source_name == "json":
+                        # load data from file at dataset_id
                         prompt_text = row.get('prompt')
 
                     # Validate and add
