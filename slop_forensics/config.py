@@ -28,14 +28,13 @@ COMBINED_METRICS_FILE = os.path.join(RESULTS_DIR, "slop_profile_results.json") #
 DATASET_SOURCES = {
     # "Nitral-AI": "Nitral-AI/Reddit-SFW-Writing_Prompts_ShareGPT",
     #"llm-aes": "llm-aes/writing-prompts"
-    "json": "../data/scp_prompts.json"
+    "json": "../data/scp_prompts.jsonl"
 }
-
 
 
 # Generation Parameters
 SYSTEM_PROMPT = "You are a helpful writing assistant. Your goal is to write compelling story chapters based on user prompts."
-USER_PROMPT_TEMPLATE = "write one chapter in a larger story, using this prompt as general inspiration. Approximately 800 words. Only output the chapter text, with no extra commentary before or after."
+USER_PROMPT_TEMPLATE = "Write an SCP for the SCP wiki project, using this prompt as general inspiration. Approximately 800 words. Only output the scp article, with no extra commentary before or after."
 TEMPERATURE = 0.7
 MAX_TOKENS = 4096 # Adjust based on expected word count and model limits
 MIN_OUTPUT_LENGTH = 500 # Minimum character length for generated output
