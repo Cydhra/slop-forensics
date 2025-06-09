@@ -1,1 +1,10 @@
 .env
+results/analysis/*
+!results/analysis/.gitkeep
+results/phylogeny/*
+!results/phylogeny/.gitkeep
+results/slop_lists/*
+!results/slop_lists/.gitkeep
+results/datasets/*
+!results/datasets/.gitkeep
+results/slop_profile_results.json
