@@ -53,9 +53,9 @@ WORD_MIN_LENGTH = 4 # Min length for word counting (unless it has an apostrophe)
 WORD_MIN_REPETITION_COUNT = 5 # Min times a word must appear overall to be considered repetitive
 WORD_MIN_PROMPT_IDS = 2 # Min unique prompts a word must appear in to be considered repetitive
 NGRAM_MIN_PROMPT_IDS = 2 # Min unique prompts an N-gram must appear in
-TOP_N_WORDS_REPETITION = 1000 # How many top repetitive words to store in analysis file
-TOP_N_BIGRAMS = 200
-TOP_N_TRIGRAMS = 200
+TOP_N_WORDS_REPETITION = 2000 # How many top repetitive words to store in analysis file
+TOP_N_BIGRAMS = 400
+TOP_N_TRIGRAMS = 400
 COMMON_WORD_THRESHOLD = 1.2e-5 # Wordfreq threshold to filter common words in slop lists
 STOPWORD_LANG = 'english'
 
